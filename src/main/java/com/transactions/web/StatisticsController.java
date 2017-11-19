@@ -13,12 +13,12 @@ import com.transactions.web.exception.OldTransactionException;
 @RestController
 public class StatisticsController {
 
-    @Autowired 
-    private StatisticsService statisticsService;
+	@Autowired
+	private StatisticsService statisticsService;
 
-    @RequestMapping(value = "/statistics")
-    public ResponseEntity<?> transactions () throws OldTransactionException {
-    		Statistics statistics = statisticsService.getStatistics();
-    		return new ResponseEntity<>(statistics, HttpStatus.OK);
-    }
+	@RequestMapping(value = "/statistics")
+	public ResponseEntity<?> transactions() throws OldTransactionException {
+		Statistics statistics = statisticsService.getStatistics();
+		return new ResponseEntity<>(statistics, HttpStatus.OK);
+	}
 }
