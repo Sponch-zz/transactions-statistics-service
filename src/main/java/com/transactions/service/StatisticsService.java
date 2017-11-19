@@ -7,15 +7,30 @@ import org.springframework.stereotype.Component;
 import com.transactions.domain.Statistics;
 import com.transactions.domain.Transaction;
 
+/**
+ * Statistic service
+ * @author csponchiado
+ *
+ */
 @Component()
 public class StatisticsService implements CallbackService<List<Transaction>>{
 	
+	/**
+	 * Current statistic of transactions in the last configurated minutes
+	 */
 	private Statistics statistics = new Statistics();
 
+	/**
+	 * Get current statistics
+	 * @return statistic
+	 */
 	public Statistics getStatistics() {
 		return statistics;
 	}
 
+	/**
+	 * Receive as a callback one list of transactions to calculate statistics
+	 */
 	@Override
 	public void callback(List<Transaction> transactions) {
 		if(transactions.size() == 0) {
@@ -40,6 +55,10 @@ public class StatisticsService implements CallbackService<List<Transaction>>{
 		}
 	}
 	
+	/**
+	 * Update the current statistics with the new one
+	 * @param statistics
+	 */
 	private void updateStatistics(Statistics statistics) {
 		synchronized (statistics) {	
 			this.statistics = statistics;

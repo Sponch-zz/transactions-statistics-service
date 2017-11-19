@@ -22,6 +22,12 @@ public class TransactionsController {
 	@Autowired
 	private ApplicationConfiguration configuration;
 
+	/**
+	 * Rest API endpoint to receive transactions
+	 * @return 201 Created if transactions has a valid timestamp
+	 *   			 204 No Content if transaction is older than time frame
+	 * @throws OldTransactionException if timestamp is older than time frame
+	 */
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping(value = "/transactions")
 	public void transactions(@RequestBody Transaction transaction) throws OldTransactionException {

@@ -28,7 +28,7 @@ public class TransactionsRepository implements Repository<Transaction> {
 	private Queue<Transaction> queue = new ConcurrentLinkedQueue<>();
 
 	/**
-	 * Thead to clean old transactions
+	 * Thread to clean old transactions
 	 */
 	private Thread cleanerThread = new Thread(new CleanerQueue());
 
@@ -39,8 +39,7 @@ public class TransactionsRepository implements Repository<Transaction> {
 	private CallbackService<List<Transaction>> callback;
 
 	/**
-	 * Period of time that transaction can live in the list to calculate the
-	 * statistics
+	 * Application configuration
 	 */
 	@Autowired
 	private ApplicationConfiguration configuration;
@@ -49,6 +48,9 @@ public class TransactionsRepository implements Repository<Transaction> {
 		cleanerThread.start();
 	}
 
+	/**
+	 * Accumulate transactions
+	 */
 	@Override
 	public void add(Transaction transaction) {
 		queue.add(transaction);
@@ -70,6 +72,12 @@ public class TransactionsRepository implements Repository<Transaction> {
 		callback.callback(get());
 	}
 
+	/**
+	 * Cleaner of transactions. It run each 300ms to remove transactions expired 
+	 * if there are transactions accumulated
+	 * @author csponchiado
+	 *
+	 */
 	class CleanerQueue implements Runnable {
 		@Override
 		public void run() {
