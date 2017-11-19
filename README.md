@@ -18,14 +18,26 @@ cd /tmp
 git clone git@github.com:Sponch/transactions-statistics-service.git
 cd transactions-statistics-service
 ```
-##### Build the application
+#### Build the application
 ```
 mvn clean install package
 ```
-##### Run the application
+#### Run the application
 Change the version to run the application
 ```
 java -jar target/transactions-statistics-service-<VERSION>.jar
 ```
+## Generate Coverage of tests
+#### Generate report 
+```
+mvn test jacoco:report
+```
+#### Open Report
+```
+open target/site/jacoco/index.html
+```
+
+## Coverage
+[Coverage Result](./coverage.png)
 
 
