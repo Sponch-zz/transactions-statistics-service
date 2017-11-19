@@ -19,6 +19,6 @@ public class StatisticsController {
     @RequestMapping(value = "/statistics")
     public ResponseEntity<?> transactions () throws OldTransactionException {
     		Statistics statistics = statisticsService.getStatistics();
-		return new ResponseEntity<>(statistics, HttpStatus.OK);
+    		return new ResponseEntity<>(statistics, HttpStatus.OK);
     }
 }

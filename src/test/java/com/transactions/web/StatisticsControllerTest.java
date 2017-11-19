@@ -24,24 +24,22 @@ import com.transactions.service.StatisticsService;
 public class StatisticsControllerTest {
 
 	@Autowired
-    private MockMvc mvc;
- 
+	private MockMvc mvc;
+
 	@MockBean
-    private StatisticsService statisticsService;
-	
-    @MockBean
+	private StatisticsService statisticsService;
+
+	@MockBean
 	private ApplicationConfiguration configuration;
-    
-    @Before
+
+	@Before
 	public void setUp() {
 		Mockito.when(statisticsService.getStatistics()).thenReturn(new Statistics());
 	}
-    
-    @Test
-    public void shouldReturnEmptyStatistics_whenNoHaveTransactions() throws Exception {
-    		mvc.perform(get("/statistics")
-    			      .contentType(MediaType.APPLICATION_JSON))
-    			      .andExpect(status().isOk())
-    			      .andExpect(jsonPath("$.sum").value(0d));
-    }
+
+	@Test
+	public void shouldReturnEmptyStatistics_whenNoHaveTransactions() throws Exception {
+		mvc.perform(get("/statistics").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(jsonPath("$.sum").value(0d));
+	}
 }

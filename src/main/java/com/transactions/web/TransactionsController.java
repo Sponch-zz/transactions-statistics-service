@@ -18,7 +18,7 @@ public class TransactionsController {
 
 	@Autowired
 	private TransactionsService transactionsService;
-	
+
 	@Autowired
 	private ApplicationConfiguration configuration;
 
