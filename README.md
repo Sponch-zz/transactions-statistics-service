@@ -23,6 +23,10 @@ Change the version to run the application
 ```
 java -jar target/transactions-statistics-service-<VERSION>.jar
 ```
+#### Visualization of REST API using [Swagger](./swagger.png) 
+
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
 ## Generate Coverage of tests
 #### Generate report 
 ```
